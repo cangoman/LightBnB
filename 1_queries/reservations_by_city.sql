@@ -1,0 +1,4 @@
+SELECT properties.city as city, COUNT(reservations.*) as total_reservations
+JOIN properties ON properties.id = property_id
+GROUP BY city
+ORDER BY COUNT(reservations.*) DESC;
