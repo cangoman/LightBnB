@@ -14,10 +14,10 @@ VALUES ('James Rodriguez',
 
 
 
-INSERT INTO properties (owner_id, title, description, thumbnail_photo_url, cover_photo_url, cost_per_night, parking_spaces, number_of_bathrooms, number_of_bedrooms, country, street, province, post_code, active) 
-VALUES (1, 'Beautiful chalet with soccer field', 'description', 'https://images.pexels.com/photos/2360673/pexels-photo-2360673.jpeg?cs=srgb&dl=pexels-tobias-bj%C3%B8rkli-2360673.jpg&fm=jpg', 'https://images.pexels.com/photos/2360673/pexels-photo-2360673.jpeg?cs=srgb&dl=pexels-tobias-bj%C3%B8rkli-2360673.jpg&fm=jpg', 500, 2, 2, 4, 'Colombia', '155 Gol', 'Bolivar', 110011, TRUE),
-(2, 'Cozy place with chimney', 'description', 'https://images.pexels.com/photos/1004682/pexels-photo-1004682.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260', 'https://images.pexels.com/photos/2360673/pexels-photo-2360673.jpeg?cs=srgb&dl=pexels-tobias-bj%C3%B8rkli-2360673.jpg&fm=jpg', 1030, 5, 5, 8, 'Canada', '234 Polar Bear Drive', 'Quebec', 'J1D 2C3', TRUE),
-(5, 'Self powered cabin', 'description', 'https://images.pexels.com/photos/2750135/pexels-photo-2750135.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 'https://images.pexels.com/photos/2750135/pexels-photo-2750135.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 300, 2, 1, 3, 'Switzerland', '234 Chocolate Factory Road', 'Alps', 'J1D 2C3', TRUE);
+INSERT INTO properties (owner_id, title, description, thumbnail_photo_url, cover_photo_url, cost_per_night, parking_spaces, number_of_bathrooms, number_of_bedrooms, country, city, street, province, post_code, active) 
+VALUES (1, 'Beautiful chalet with soccer field', 'description', 'https://images.pexels.com/photos/2360673/pexels-photo-2360673.jpeg?cs=srgb&dl=pexels-tobias-bj%C3%B8rkli-2360673.jpg&fm=jpg', 'https://images.pexels.com/photos/2360673/pexels-photo-2360673.jpeg?cs=srgb&dl=pexels-tobias-bj%C3%B8rkli-2360673.jpg&fm=jpg', 500, 2, 2, 4, 'Colombia', 'Pescaito', '155 Gol', 'Bolivar', 110011, TRUE),
+(2, 'Cozy place with chimney', 'description', 'https://images.pexels.com/photos/1004682/pexels-photo-1004682.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260', 'https://images.pexels.com/photos/2360673/pexels-photo-2360673.jpeg?cs=srgb&dl=pexels-tobias-bj%C3%B8rkli-2360673.jpg&fm=jpg', 1030, 5, 5, 8, 'Canada', 'Trois Rivieres', '234 Polar Bear Drive', 'Quebec', 'J1D 2C3', TRUE),
+(5, 'Self powered cabin', 'description', 'https://images.pexels.com/photos/2750135/pexels-photo-2750135.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 'https://images.pexels.com/photos/2750135/pexels-photo-2750135.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', 300, 2, 1, 3, 'Switzerland', 'Bern', '234 Chocolate Factory Road', 'Alps', 'J1D 2C3', TRUE);
 
 
 INSERT INTO reservations (start_date, end_date, property_id, guest_id)
