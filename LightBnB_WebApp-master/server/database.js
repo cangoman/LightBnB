@@ -132,7 +132,6 @@ const getAllProperties = function(options, limit = 10) {
   LIMIT $${queryParams.length};
   `;
   
-  
   return pool.query(queryString, queryParams)
   .then(res => res.rows)
   .catch(e => console.error(e.stack));
@@ -146,9 +145,22 @@ exports.getAllProperties = getAllProperties;
  * @return {Promise<{}>} A promise to the property.
  */
 const addProperty = function(property) {
-  const propertyId = Object.keys(properties).length + 1;
-  property.id = propertyId;
-  properties[propertyId] = property;
-  return Promise.resolve(property);
+  const keys = Object.keys(property);
+  let keyString = keys.join(',');
+  let placeholder = [];
+  for (let i = 0; i < keys.length; i++) {
+    placeholder.push(`$${i+1}`);
+  }
+  placeholder = placeholder.join(',');
+  const values = Object.values(property);
+
+  return pool.query(`
+  INSERT INTO properties (${keyString}) 
+  VALUES(${placeholder})
+  RETURNING *;
+  `, values
+  )
+  .then(res =>res.rows[0])
+  .catch(e => console.error(e.stack));
 }
 exports.addProperty = addProperty;
