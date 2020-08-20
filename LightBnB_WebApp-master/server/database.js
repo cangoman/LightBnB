@@ -1,16 +1,4 @@
-const properties = require('./json/properties.json');
-const users = require('./json/users.json');
-const { Pool } = require('pg');
-
-
-const pool = new Pool({
-  user: 'vagrant',
-  password: '123',
-  host: 'localhost',
-  database: 'lightbnb'
-});
-
-
+const db = require('./db');
 
 /// Users
 
@@ -20,7 +8,7 @@ const pool = new Pool({
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithEmail = function(email) {
-  return pool.query(`
+  return db.query(`
     SELECT * 
     FROM users
     WHERE email = $1
@@ -37,7 +25,7 @@ exports.getUserWithEmail = getUserWithEmail;
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithId = function(id) {
-  return pool.query(`
+  return db.query(`
   SELECT * 
   FROM users
   WHERE id = $1
@@ -55,7 +43,7 @@ exports.getUserWithId = getUserWithId;
  */
 const addUser =  function(user) {
   const values = [user.name, user.email, user.password];
-  return pool.query(`
+  return db.query(`
   INSERT INTO users (name, email, password)
   VALUES ($1,$2,$3) RETURNING *
   `, values)
@@ -73,7 +61,7 @@ exports.addUser = addUser;
  */
 const getAllReservations = function(guest_id, limit = 10) {
   const values = [guest_id, limit];
-  return pool.query(`
+  return db.query(`
   SELECT reservations.*, properties.*, AVG(property_reviews.rating) as average_rating
   FROM reservations 
   JOIN properties ON reservations.property_id = properties.id
@@ -132,7 +120,7 @@ const getAllProperties = function(options, limit = 10) {
   LIMIT $${queryParams.length};
   `;
   
-  return pool.query(queryString, queryParams)
+  return db.query(queryString, queryParams)
   .then(res => res.rows)
   .catch(e => console.error(e.stack));
 }
@@ -154,13 +142,13 @@ const addProperty = function(property) {
   placeholder = placeholder.join(',');
   const values = Object.values(property);
 
-  return pool.query(`
+  return db.query(`
   INSERT INTO properties (${keyString}) 
   VALUES(${placeholder})
   RETURNING *;
   `, values
   )
-  .then(res =>res.rows[0])
+  .then(res => res.rows[0])
   .catch(e => console.error(e.stack));
 }
 exports.addProperty = addProperty;
