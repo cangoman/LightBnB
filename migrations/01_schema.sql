@@ -31,6 +31,8 @@ CREATE TABLE properties (
 );
 
 
+
+
 CREATE TABLE reservations (
   id SERIAL PRIMARY KEY NOT NULL,
   start_date DATE NOT NULL,
